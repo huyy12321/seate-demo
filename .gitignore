@@ -1,0 +1,5 @@
+# Project exclude paths
+/account/target/
+/api/target/
+/order/target/
+/product/target/

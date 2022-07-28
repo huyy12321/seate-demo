@@ -18,7 +18,7 @@ import java.math.BigDecimal;
  */
 @Builder
 @Data
-@TableName("p_order")
+@TableName("order")
 public class SeataOrder {
 
     @TableId(type = IdType.AUTO)

@@ -4,18 +4,20 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for account
 -- ----------------------------
-DROP TABLE IF EXISTS `account`;
-CREATE TABLE `account`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `balance` decimal(10, 2) NULL DEFAULT NULL,
-  `last_update_time` timestamp NULL DEFAULT current_timestamp() ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+                           `id` int NOT NULL AUTO_INCREMENT,
+                           `user_id` int DEFAULT NULL,
+                           `product_id` int DEFAULT NULL,
+                           `count` int DEFAULT NULL,
+                           `total_price` decimal(10,2) DEFAULT NULL,
+                           `status` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8_general_ci DEFAULT NULL,
+                           `add_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                           `last_update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                           PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
 
--- ----------------------------
--- Records of account
--- ----------------------------
-INSERT INTO `account` VALUES (1, 50.00, '2022-03-16 17:02:53');
+
 
 -- ----------------------------
 -- Table structure for undo_log

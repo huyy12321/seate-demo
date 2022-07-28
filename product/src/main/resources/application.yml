@@ -17,14 +17,14 @@ spring:
         # 设置 账号数据源配置
         account:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://124.222.253.95:3306/product?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
+          url: jdbc:mysql://:3306/product?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
           username: root
-          password: weqfd4312
+          password:
         master:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://124.222.253.95:3306/product?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
+          url: jdbc:mysql://:3306/product?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
           username: root
-          password: weqfd4312
+          password:
       seata: true
 seata:
   application-id: ${spring.application.name}

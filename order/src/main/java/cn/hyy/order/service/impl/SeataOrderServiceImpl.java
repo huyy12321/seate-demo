@@ -48,7 +48,6 @@ public class SeataOrderServiceImpl implements SeataOrderService {
         log.info("收到下单请求,用户:{}, 商品:{},数量:{}", userId, productId, count);
 
         SeataOrder order = SeataOrder.builder()
-                .id(10)
                 .userId(userId)
                 .productId(productId)
                 .status(OrderStatus.INIT)

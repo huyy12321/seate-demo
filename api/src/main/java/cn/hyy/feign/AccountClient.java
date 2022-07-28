@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 /**
  * @author zyf
  */
-@FeignClient(value ="seata-account",url = "localhost:5002")
+@FeignClient(value ="seata-account")
 public interface AccountClient {
 
     /**

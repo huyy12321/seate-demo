@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * @author: zyf
  * @date: 2022/04/21
  */
-@FeignClient(value ="seata-product",url = "localhost:5003")
+@FeignClient(value ="seata-product")
 public interface ProductClient {
     /**
      * 扣减库存

@@ -4,8 +4,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for account
 -- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
+DROP TABLE IF EXISTS `p_order`;
+CREATE TABLE `p_order` (
                            `id` int NOT NULL AUTO_INCREMENT,
                            `user_id` int DEFAULT NULL,
                            `product_id` int DEFAULT NULL,

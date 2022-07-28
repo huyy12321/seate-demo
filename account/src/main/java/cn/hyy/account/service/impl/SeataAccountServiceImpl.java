@@ -4,7 +4,7 @@ package cn.hyy.account.service.impl;
 import cn.hyy.account.entity.SeataAccount;
 import cn.hyy.account.mapper.SeataAccountMapper;
 import cn.hyy.account.service.SeataAccountService;
-import com.baomidou.dynamic.datasource.annotation.DS;
+import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Service;
@@ -30,11 +30,11 @@ public class SeataAccountServiceImpl implements SeataAccountService {
     /**
      * 事务传播特性设置为 REQUIRES_NEW 开启新的事务
      */
-    @DS("account")
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW,rollbackFor = Exception.class)
     public void reduceBalance(Long userId, BigDecimal amount) {
         log.info("=============ACCOUNT START=================");
+        System.out.println("seata全局事务id====================>"+ RootContext.getXID());
         SeataAccount account = accountMapper.selectById(userId);
         Assert.notNull(account, "用户不存在");
         BigDecimal balance = account.getBalance();

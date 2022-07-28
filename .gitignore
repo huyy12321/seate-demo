@@ -3,3 +3,9 @@
 /api/target/
 /order/target/
 /product/target/
+/.idea/
+/account/account.iml
+/api/api.iml
+/order/order.iml
+/product/product.iml
+/seate-demo.iml

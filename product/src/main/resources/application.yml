@@ -3,24 +3,48 @@ server:
 spring:
   application:
     name: seata-product
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        namespace: 613f563c-f58a-4624-b00e-3d5f9c5dc04e
+        group: SEATA_GROUP
   datasource:
     dynamic:
-      seata: true    # 开启对 seata的支持
-      seata-mode: AT #支持XA及AT模式,默认AT
       datasource:
         # 设置 账号数据源配置
-        product:
+        account:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/jeecg_product?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
+          url: jdbc:mysql://124.222.253.95:3306/product?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
           username: root
-          password: root
-          schema: classpath:sql/schema-product.sql
+          password: weqfd4312
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://124.222.253.95:3306/product?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
+          username: root
+          password: weqfd4312
+      seata: true
 seata:
+  application-id: ${spring.application.name}
   enable-auto-data-source-proxy: false
-  service:
-    grouplist:
-      default: 127.0.0.1:8091
-    vgroup-mapping:
-      springboot-seata-group: default
-  # seata 事务组编号 用于TC集群名
-  tx-service-group: springboot-seata-group
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      namespace: 613f563c-f58a-4624-b00e-3d5f9c5dc04e
+      # 微服务必须在一个组，否则服务发现不了，但Seata-server 可以在不同的组中
+      group: SEATA_GROUP
+      dataId: "seataServer.properties"
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      namespace: 613f563c-f58a-4624-b00e-3d5f9c5dc04e
+      username: nacos
+      password: nacos

@@ -1,8 +1,8 @@
 server:
-  port: 5001
+  port: 5002
 spring:
   application:
-    name: seata-order
+    name: seata-account
   cloud:
     nacos:
       discovery:
@@ -17,21 +17,20 @@ spring:
         # 设置 账号数据源配置
         account:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://124.222.253.95:3306/order?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
+          url: jdbc:mysql://124.222.253.95:3306/account?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
           username: root
           password: weqfd4312
         master:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://124.222.253.95:3306/order?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
+          url: jdbc:mysql://124.222.253.95:3306/account?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false
           username: root
           password: weqfd4312
-#          schema: classpath:sql/schema-account.sql
+      seata: true # 使用多数据源要让这个属性设为true
 seata:
   application-id: ${spring.application.name}
-  # 这里的配置对应 seataServer.properties 中的 service.vgroupMapping.storage-service-group=default
-  enable-auto-data-source-proxy: false
+  enable-auto-data-source-proxy: false  # 使用多数据源设为false ,普通的情况下true
   config:
-    type: nacos
+    type: nacos # nacos 应该是目前比较常用的,以nacos为例子
     nacos:
       server-addr: 127.0.0.1:8848
       username: nacos
@@ -49,4 +48,3 @@ seata:
       namespace: 613f563c-f58a-4624-b00e-3d5f9c5dc04e
       username: nacos
       password: nacos
-      # 微服务必须在一个组，否则服务发现不了，但Seata-server 可以在不同的组中

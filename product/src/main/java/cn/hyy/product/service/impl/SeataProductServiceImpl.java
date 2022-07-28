@@ -4,6 +4,7 @@ import cn.hyy.product.entity.SeataProduct;
 import cn.hyy.product.mapper.SeataProductMapper;
 import cn.hyy.product.service.SeataProductService;
 import com.baomidou.dynamic.datasource.annotation.DS;
+import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Service;
@@ -31,10 +32,11 @@ public class SeataProductServiceImpl implements SeataProductService {
      * 事务传播特性设置为 REQUIRES_NEW 开启新的事务
      */
     @DS("product")
-    @Transactional(propagation = Propagation.REQUIRES_NEW,rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public BigDecimal reduceStock(Long productId, Integer count) {
         log.info("=============PRODUCT START=================");
+        System.out.println("seata全局事务id====================>"+ RootContext.getXID());
         // 检查库存
         SeataProduct product = productMapper.selectById(productId);
         Assert.notNull(product, "商品不存在");

@@ -3,9 +3,7 @@ package cn.hyy.product.controller;
 
 import cn.hyy.product.service.SeataProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
@@ -19,8 +17,8 @@ public class SeataProductController {
     @Autowired
     private SeataProductService seataProductService;
 
-    @PostMapping("/reduceStock")
-    public BigDecimal reduceStock(Long productId, Integer count) {
+    @GetMapping("/reduceStock")
+    public BigDecimal reduceStock(@RequestParam Long productId, @RequestParam Integer count) {
         return seataProductService.reduceStock(productId, count);
     }
 }

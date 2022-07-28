@@ -1,6 +1,7 @@
 package cn.hyy.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
  * @author: zyf
  * @date: 2022/04/21
  */
-@FeignClient(value ="seata-product")
+@FeignClient(value ="seata-product",url = "localhost:5003")
 public interface ProductClient {
     /**
      * 扣减库存
@@ -20,6 +21,6 @@ public interface ProductClient {
      * @param count
      * @return
      */
-    @PostMapping("/test/seata/product/reduceStock")
+    @GetMapping("/test/seata/product/reduceStock")
     BigDecimal reduceStock(@RequestParam("productId") Long productId, @RequestParam("count") Integer count);
 }
